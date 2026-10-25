@@ -2285,7 +2285,7 @@ elif curr_page == "🗄️ Data":
 
         with sql_sub4:
             st.markdown("#### Table: `users`")
-            u_all = sql_db.fetch_dataframe("SELECT user_id, name, email, phone, role, created_at FROM users;")
+            u_all = sql_db.fetch_dataframe("SELECT user_id, name, email, phone, created_at FROM users;")
             st.dataframe(u_all, use_container_width=True, hide_index=True)
             st.caption(f"Total registered fleet users: {len(u_all)}")
 

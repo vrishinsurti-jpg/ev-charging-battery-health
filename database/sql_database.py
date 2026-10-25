@@ -18,6 +18,11 @@ class SQLDatabase:
     """Manages SQLite database connections, schema creation, and query executions."""
 
     def __init__(self, db_path: str = "data/ev_platform.db"):
+        if db_path != ":memory:" and not os.path.isabs(db_path):
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            abs_path = os.path.join(base_dir, db_path)
+            if os.path.exists(abs_path) or not os.path.exists(db_path):
+                db_path = abs_path
         self.db_path = db_path
         self._ensure_directory()
         self.init_db()
